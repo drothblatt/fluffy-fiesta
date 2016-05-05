@@ -1,7 +1,7 @@
 # fluffy-fiesta
 SoftDev2 Final Project
 
-## Developers
+### Developers
 * Ishaq Bhuiyan
 * Max Fishelson
 * Felipe Mansilla
