@@ -14,15 +14,6 @@ interact('.draggable')
 
     // call this function on every dragmove event
     onmove: dragMoveListener,
-    // call this function on every dragend event
-    onend: function (event) {
-      var textEl = event.target.querySelector('p');
-
-      textEl && (textEl.textContent =
-        'moved a distance of '
-        + (Math.sqrt(event.dx * event.dx +
-                     event.dy * event.dy)|0) + 'px');
-    }
   });
 
   function dragMoveListener (event) {

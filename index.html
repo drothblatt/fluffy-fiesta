@@ -4,14 +4,8 @@
     <title>Fluffy Fiesta Seating Chart</title>
   </head>
   <body>
-    <div id="drag-1" class="draggable">
-      <p> You can drag one element </p>
-    </div>
-    <div id="drag-2" class="draggable">
-      <p> with each pointer </p>
-    </div>
 
-    <button onclick="addStudent()">Add Student</button>
+    <button id="addingStudent" onclick="addStudent()">Add Student</button>
 
     <script src="scripts/interact.js"></script>
     <script src="scripts/index.js"></script>
@@ -20,7 +14,8 @@
         var iDiv = document.createElement('div');
         iDiv.id = 'student';
         iDiv.className = 'draggable';
-        document.getElementsByTagName('body')[0].appendChild(iDiv);
+        iDiv.appendChild(document.createTextNode("Student"));
+        document.body.insertBefore(iDiv, document.getElementById("addingStudent"));
       };
     </script>
   </body>
