@@ -10,8 +10,18 @@
     <div id="drag-2" class="draggable">
       <p> with each pointer </p>
     </div>
+
     <button onclick="addStudent()">Add Student</button>
-    <script src="../../node_modules/interact.js/interact.js"></script>
+
+    <script src="scripts/interact.js"></script>
     <script src="scripts/index.js"></script>
+    <script>
+      function addStudent() {
+        var iDiv = document.createElement('div');
+        iDiv.id = 'student';
+        iDiv.className = 'draggable';
+        document.getElementsByTagName('body')[0].appendChild(iDiv);
+      };
+    </script>
   </body>
 </html>
