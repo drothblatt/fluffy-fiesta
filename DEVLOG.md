@@ -59,3 +59,10 @@ Two ideas for making templating easier:
 Back end and authentication:
  - Started Google authentication and integration with flask.
  - Need to start creating and populating databases
+
+Thursday, June 2nd, Class time
+--------------
+
+Make template first
+
+Populate template
