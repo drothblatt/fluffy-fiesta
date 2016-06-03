@@ -66,3 +66,8 @@ Thursday, June 2nd, Class time
 Make template first
 
 Populate template
+
+------------
+
+Max Fishelson 6/2/16:
+added to makeTemplate: minimum desk sizes, undo button, no desk overlap, desks saved to array
