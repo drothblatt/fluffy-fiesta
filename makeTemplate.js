@@ -63,7 +63,7 @@ var add = function add(){
     isMouseDown = 0;
     var deskX = magFifty((event.clientX - rect.left - lastMouseX)/blockX);
     var deskY = magFifty((event.clientY - rect.top - lastMouseY)/blockY);
-    if(!isOverlap([lastMouseX,lastMouseY,lastMouseX+deskX*blockX,lastMouseY+deskY*blockY])){
+    if(!isOverlap([Math.min(lastMouseX,lastMouseX+deskX*blockX),Math.min(lastMouseY,lastMouseY+deskY*blockY),Math.max(lastMouseX,lastMouseX+deskX*blockX),Math.max(lastMouseY,lastMouseY+deskY*blockY)])){
         for(var i=0; i<=blockX; i++){
 	    lines.push({x1:lastMouseX+i*deskX, y1:lastMouseY, x2:lastMouseX+i*deskX, y2:lastMouseY+deskY*blockY});
         }
@@ -72,7 +72,10 @@ var add = function add(){
         }
         for(var i=0; i<blockX; i++){
             for(var j=0; j<blockY; j++){
-                desks.push([lastMouseX+i*deskX,lastMouseY+j*deskY,lastMouseX+deskX*(i+1),lastMouseY+deskY*(j+1)]);
+                desks.push([Math.min(lastMouseX+i*deskX,lastMouseX+deskX*(i+1)),
+                            Math.min(lastMouseY+j*deskY,lastMouseY+deskY*(j+1)),
+                            Math.max(lastMouseX+i*deskX,lastMouseX+deskX*(i+1)),
+                            Math.max(lastMouseY+j*deskY,lastMouseY+deskY*(j+1))]);
             }
         }
     }else{
@@ -82,7 +85,7 @@ var add = function add(){
 
 function isOverlap(newD){
     for(var i=0; i<desks.length; i++){
-        if(((desks[i][3]>newD[1])==(desks[i][1]<newD[3]))&&((desks[i][4]>newD[2])==(desks[i][2]<newD[4]))) return true;
+        if(((desks[i][2]>newD[0])==(desks[i][0]<newD[2]))&&((desks[i][3]>newD[1])==(desks[i][1]<newD[3]))) return true;
     }
     return false;
 }
