@@ -1,0 +1,19 @@
+populate.js
+    redraw lines
+code drag and drop
+populate.html --> basically same as canvas 
+
+
+(min X, min Y, max X, max Y) == (start X, start Y, end X, end Y)
+
+open his csv, fix the array to add an item
+
+drag and drop
+iteratre through list of desks:
+   check if youre in between min and max X AND min and max Y
+
+drop:
+  on mouse down. if availible. 
+
+
+populate randomly or alphabetically or whatever. doesnt matter right now. 
