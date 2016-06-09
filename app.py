@@ -1,3 +1,8 @@
+# What is contained within session: (note letter casing)
+# session['first_name'] - FIRST NAME
+# session['last_name'] - LAST NAME
+# session['email'] - email@whatever.domain
+
 from oauth2client import client
 from flask import session, redirect, Flask, request, flash, render_template, url_for, Markup
 import uuid
