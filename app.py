@@ -1,27 +1,81 @@
-from flask import Flask, request, render_template, flash
-import utils
+from oauth2client import client
+from flask import session, redirect, Flask, request, flash, render_template, url_for, Markup
+import uuid
+import httplib2
+from apiclient.discovery import build
+from urllib2 import Request, urlopen, URLError
+import json
+
 app = Flask(__name__)
+app.secret_key = str(uuid.uuid4())
+# Set to false when deployed for reals
+app.debug = True
 
-@app.route("/")
-@app.route("/home")
-@app.route("/home/")
-def home():
-    if 'username' in session:
-        return render_template("profile.html") # teacher profile page with info & list of classes to select
-    return render_template("login.html") # login page, user must be logged in first
+# PATH of client_secret file. Change accordingly
+CLIENT_SECRET = 'client_secret_608463589291-1f9sf60q3ae6vd6vrhu8u9ls7p40qnqj.apps.googleusercontent.com.json'
 
-@app.route("/login")
-@app.route("/login/")
-def login():
-    if 'username' in session:
-        msg = "You are already logged in as" + username + "." + "\n" + "Log Out? <a href='/logout'> </a> "
-        return render_template("profile.html", msg=msg)
-    return render_template("login.html")
+# Checks if a user is still logged in and session(access token) hasn't expired.
+# Run this at the beginning of each page method and log user out if it returns False
+# Look at index() as an example
+def valid_user():
+    if 'credentials' not in session:
+        return False
+    credentials = client.OAuth2Credentials.from_json(session['credentials'])
+    if credentials.access_token_expired:
+        return False
+    return True
+
+# Default page, which is also classes page. Lists all the classes of the teacher
+@app.route("/", methods=["GET","POST"])
+@app.route("/classes", methods=["GET", "POST"])
+def index():
+    if not valid_user():
+        session.clear()
+        return redirect(url_for('oauth2callback'))
+    # Change this to whatever it is for classes, just here as an example
+    return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
+
+# Call back for Google Oauth login. Authenticates and then stores user in session.
+@app.route("/oauth2callback", methods=["GET","POST"])
+def oauth2callback():
+    flow = client.flow_from_clientsecrets(
+        CLIENT_SECRET,
+        scope = 'profile email',
+        redirect_uri=url_for('oauth2callback', _external = True))
+    auth_uri = flow.step1_get_authorize_url()
+    if 'code' not in request.args:
+        return redirect(auth_uri)
+    auth_code = request.args.get('code')
+    credentials = flow.step2_exchange(auth_code)
+    session['credentials'] = credentials.to_json()
+    credentials = client.OAuth2Credentials.from_json(session['credentials'])
+    if credentials.access_token_expired:
+        return redirect(url_for('oauth2callback'))
+    access_token = client.OAuth2Credentials.get_access_token(credentials)[0]
+    session['access_token'] = access_token
+    headers = {'Authorization': 'OAuth '+access_token}
+    req = Request('https://www.googleapis.com/oauth2/v1/userinfo',
+                  None, headers)
+    try:
+        res = urlopen(req)
+    except URLError, e:
+        if e.code == 401:
+            # Unauthorized - bad token
+            session.pop('credentials', None)
+            return redirect(url_for('oauth2callback'))
+    user_info = json.loads(res.read())
+    session['first_name'] = user_info['given_name'].upper()
+    session['last_name'] = user_info['family_name'].upper()
+    session['email'] = user_info['email']
+    if 'hd' not in user_info or user_info['hd'] != 'stuy.edu':
+        credentials.revoke(httplib2.Http())
+        session.clear()
+        return "Only stuy.edu emails allowed"
+    return redirect(url_for('index'))
 
 @app.route("/classes", methods=['GET', 'POST'])
 def classes():
 	return render_template("classes.html")
 
 if __name__ == "__main__":
-	app.debug = True
-	app.run("0.0.0.0", 8000)
+    app.run()
