@@ -30,6 +30,9 @@ def teacherExists(teacher):
         return True
     return False
 
+# Reads all students from csv.
+# Returns a dictionary of students
+# Intended for use by only function addStudents()
 def getStudents():
 	reader = csv.DictReader(open(ROSTER_FILE))
 	students = {}
@@ -41,10 +44,16 @@ def getStudents():
 		students[OSIS]['TEACHERS'][row['TEACHER'].upper()] = row['PERIOD'].upper()
 	return students
 
-# Adds all the students to the database
+# Adds all the students to the students collection in the database
+# Each document is formatted:
+# 'LAST_NAME' : LASTNAME
+# 'FIRST_NAME' : FIRSTNAME
+# 'OSIS' : osis#
+# 'TEACHERS' : { TEACHERNAME:Period, TEACHERNAME2:Period}
+#           For example: 'TEACHERS' : { 'BROWN' : '3' , 'HOLMES' : '4'}
 def addStudents():
     students = getStudents()
-    print "Running"
+    #print "Running"
     for key in students:
         student = students[key]
         student['OSIS'] = key
