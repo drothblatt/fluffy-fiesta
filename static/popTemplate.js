@@ -74,7 +74,7 @@ function setDesks(){ //(boolean randomize_list){ // assigns each student a desk 
     int i = 0;
     for (var i=0; i < students.length; i++){
         if i == desks.length {
-            console.log("not enough desks for all students."); // this needs to be soemwhere other than just console though
+            alert("Not enough desks for students. you should probably go back to make more desks");
             break;
         }
         desks[i][4] = i;
