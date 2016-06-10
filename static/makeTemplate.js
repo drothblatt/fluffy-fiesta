@@ -76,7 +76,8 @@ var add = function add(){
                             Math.min(lastMouseY+j*deskY,lastMouseY+deskY*(j+1)),
                             Math.max(lastMouseX+i*deskX,lastMouseX+deskX*(i+1)),
                             Math.max(lastMouseY+j*deskY,lastMouseY+deskY*(j+1)),
-			    false]);
+			                -1 
+			              ]);
             }
         }
     }else{
@@ -108,3 +109,37 @@ u.addEventListener("click",function(){
     }
     redrawLines();
 });
+
+function writeLinesToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much thanks
+    var linesFile = "lines.csv";
+    
+    var file = new File(linesFile);
+
+    file.open("w"); // open file with write access
+    
+    for(var i=0; i<lines.length; i++) {
+        var curr = lines[i];
+        var line = curr.x1 + ',' + curr.x2 + ',' + curr.y1  + ',' + curr.y2;
+        file.writeln(line);
+    };
+    
+    file.close();
+    
+}
+
+function writeDesksToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much thanks
+    var desksFile = "desk.csv";
+    
+    var file = new File(desksFile);
+
+    file.open("w"); // open file with write access
+    
+    for(var i=0; i<desks.length; i++) {
+        var curr = desks[i];
+        var line = curr.x1 + ',' + curr.x2 + ',' + curr.y1 + ',' + curr.y2;
+        file.writeln(line);
+    };
+    
+    file.close();
+    
+}
