@@ -50,16 +50,16 @@ var draw = function draw(){
     lastMouseX = event.clientX - rect.left;
     lastMouseY = event.clientY - rect.top;
     isMouseDown = 1;
-    
+
     c.addEventListener("mousemove",function(){
 	redrawLines(event.clientX - rect.left - lastMouseX,event.clientY - rect.top - lastMouseY);
 	if(!isMouseDown){c.removeEventListener("mousemove",arguments.callee);}
     });
-    
-    
+
+
 }
 
-var add = function add(){
+var add = function add( event ){
     isMouseDown = 0;
     var deskX = magFifty((event.clientX - rect.left - lastMouseX)/blockX);
     var deskY = magFifty((event.clientY - rect.top - lastMouseY)/blockY);
@@ -76,7 +76,7 @@ var add = function add(){
                             Math.min(lastMouseY+j*deskY,lastMouseY+deskY*(j+1)),
                             Math.max(lastMouseX+i*deskX,lastMouseX+deskX*(i+1)),
                             Math.max(lastMouseY+j*deskY,lastMouseY+deskY*(j+1)),
-			                -1 
+			                -1
 			              ]);
             }
         }
@@ -91,7 +91,7 @@ function isOverlap(newD){
     }
     return false;
 }
-    
+
 var set = function set(){
     blockY = parseInt(prompt("Enter the number of rows in the block of desks:",blockY));
     blockX = parseInt(prompt("Enter the number of columns in the block of desks:",blockX));
@@ -112,34 +112,41 @@ u.addEventListener("click",function(){
 
 function writeLinesToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much thanks
     var linesFile = "lines.csv";
-    
+
     var file = new File(linesFile);
 
     file.open("w"); // open file with write access
-    
+
     for(var i=0; i<lines.length; i++) {
         var curr = lines[i];
         var line = curr.x1 + ',' + curr.x2 + ',' + curr.y1  + ',' + curr.y2;
         file.writeln(line);
     };
-    
+
     file.close();
-    
+
 }
 
 function writeDesksToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much thanks
     var desksFile = "desk.csv";
-    
+
     var file = new File(desksFile);
 
     file.open("w"); // open file with write access
-    
+
     for(var i=0; i<desks.length; i++) {
         var curr = desks[i];
-        var line = curr[0] + ',' + curr.[1] + ',' + curr[2] + ',' + curr[3] + ',' + curr[4];
+        var line = curr[0] + ',' + curr[1] + ',' + curr[2] + ',' + curr[3] + ',' + curr[4];
         file.writeln(line);
     };
-    
+
     file.close();
-    
+
+}
+
+function sendInfo(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("lines=[...]&desks=[...]");
 }

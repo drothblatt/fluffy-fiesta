@@ -37,9 +37,12 @@ def index():
     if not valid_user():
         session.clear()
         return redirect(url_for('oauth2callback'))
+    if request.method=="POST":
+        if 'potato' in request.form:
+            return request.form['potato']
     # Change this to whatever it is for classes, just here as an example
-    return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
-    # return render_template('classes.html')
+    #return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
+    return render_template('makeTemplate.html')
 
 # Call back for Google Oauth login. Authenticates and then stores user in session.
 @app.route("/oauth2callback", methods=["GET","POST"])
