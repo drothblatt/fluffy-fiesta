@@ -6,8 +6,8 @@ var lines=[];
 var desks=[];
 var rect = c.getBoundingClientRect();
 
-var students = ["David Rothblatt", "Max Fishelson", "Felipe Mansilla", "Mary McGreal", "Andrew Kratsios",
-		"Henry Filosa", "Kara Follosco", "Annie Sim", "Rahul Francis", "Michael Steele", "Aristides Hatzimemos",
+var students = ["David Rothblatt", "Max Fishelson", "Felipe Mansilla", "Mary McGreal", "Andrew Kratsios", \
+		"Henry Filosa", "Kara Follosco", "Annie Sim", "Rahul Francis", "Michael Steele", "Aristides Hatzimemos", \
 		"Annabelle Gary", "Alexis Kushner", "Max Schneider"];
 
 
