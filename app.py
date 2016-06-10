@@ -39,6 +39,7 @@ def index():
         return redirect(url_for('oauth2callback'))
     # Change this to whatever it is for classes, just here as an example
     return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
+    # return render_template('classes.html')
 
 # Call back for Google Oauth login. Authenticates and then stores user in session.
 @app.route("/oauth2callback", methods=["GET","POST"])
@@ -77,10 +78,6 @@ def oauth2callback():
         session.clear()
         return "Only stuy.edu emails allowed"
     return redirect(url_for('index'))
-
-@app.route("/classes", methods=['GET', 'POST'])
-def classes():
-	return render_template("classes.html")
 
 if __name__ == "__main__":
     app.run()
