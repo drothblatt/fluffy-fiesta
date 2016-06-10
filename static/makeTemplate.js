@@ -75,7 +75,8 @@ var add = function add(){
                 desks.push([Math.min(lastMouseX+i*deskX,lastMouseX+deskX*(i+1)),
                             Math.min(lastMouseY+j*deskY,lastMouseY+deskY*(j+1)),
                             Math.max(lastMouseX+i*deskX,lastMouseX+deskX*(i+1)),
-                            Math.max(lastMouseY+j*deskY,lastMouseY+deskY*(j+1))]);
+                            Math.max(lastMouseY+j*deskY,lastMouseY+deskY*(j+1)),
+			    false]);
             }
         }
     }else{

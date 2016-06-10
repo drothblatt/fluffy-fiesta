@@ -12,10 +12,11 @@ var rect = c.getBoundingClientRect();
 
 
 
-
-
 function drawLines(){
     ctx.clearRect(0,0,c.width,c.height);
+
+    // part here where i read csv and enter data into lines[]
+
 
     for(var i=0; i<lines.length; i++){
         ctx.beginPath();
@@ -24,3 +25,30 @@ function drawLines(){
         ctx.stroke();
     }
 }
+
+function populateDeskArray(){
+    for(var i=0; i < desks.length; i++){
+	desks[i].push( **boolean**);
+    }
+
+}
+
+function checkDesk(){
+    var mouseX = event.clientX;
+    var mouseY = event.clientY;
+
+    for(var i=0; i < desks.length; i++){
+	x1 = desks[i][0];
+	x2 = desks[i][2];
+	y1 = desks[i][1];
+	y2 = desks[i][3];
+	occupied = desks[i][4];
+	
+	if (mouseX > x1 && mouseX < x2) && (mouseY > y1 && mouseY < y2) && (!occupied) {
+	    // do this if yes
+	}
+
+}
+
+c.addEventListener("mousedown",draw);
+
