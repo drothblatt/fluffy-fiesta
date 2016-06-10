@@ -38,8 +38,11 @@ def index():
         session.clear()
         return redirect(url_for('oauth2callback'))
     if request.method=="POST":
-        if 'potato' in request.form:
-            return request.form['potato']
+        if 'lines' in request.form and 'desks' in request.form:
+            result = ''
+            result += request.form['lines'] + '\n\n' + request.form['desks']
+            print result
+            return result
     # Change this to whatever it is for classes, just here as an example
     #return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
     return render_template('makeTemplate.html')
