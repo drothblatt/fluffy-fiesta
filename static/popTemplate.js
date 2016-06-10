@@ -13,6 +13,42 @@ var students = ["Filosa, Henry", "Fishelson, Max", "Follosco, Kara",  "Francis, 
 	    	"Rothblatt, David", "Schneider, Max", "Sim, Annie", "Steele, Michael" ]; // will recieve roster alphabetically
 // in future, students will be a 2D array with each item having student name, osis, and id (and maybe img)
 
+function readlinesCSV(){
+    var linesFile = "lines.csv";
+    var file = new File(linesFile);
+    
+    file.open("r"); // open file with read access
+    while (!file.eof) {
+        var str = file.readln();
+        var coors = str.split(","); // this is an array
+    	// read each line of text
+    	lines.push({x1:coors[0], y1:coors[2], 
+    	            x2:coors[1], y2:coors[3]
+    	            });
+    }
+    file.close();
+}
+
+
+function readDesksCSV(){
+    var desksFile = "desk.csv";
+    var file = new File(desksFile);
+    
+    file.open("r"); // open file with read access
+    while (!file.eof) {
+        var str = file.readln();
+        var coors = str.split(","); // this is an array
+        console.log(coors);
+    	// read each line of text
+    	desks.push( [coors[0], coors[1], coors[2], coors[3], coors[4] ] );
+    }
+    file.close();
+}
+
+
+
+
+
 function getStudentImgs(){
     for(var i=0; i<students.length; i++){
         //set img var here
