@@ -150,7 +150,7 @@ function sendInfo(){
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var lines_data = "";
   for (var i = 0; i < lines.length; i++) {
-      lines_data += lines[i].x1 + "," + lines[i].x2 + "," lines[i].y1 + "," + lines[i].y2 + "\n";
+      lines_data += lines[i].x1 + "," + lines[i].x2 + "," + lines[i].y1 + "," + lines[i].y2 + "\n";
   };
 
   var desks_data = "";
