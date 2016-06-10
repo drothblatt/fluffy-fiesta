@@ -136,7 +136,7 @@ function writeDesksToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much 
     
     for(var i=0; i<desks.length; i++) {
         var curr = desks[i];
-        var line = curr.x1 + ',' + curr.x2 + ',' + curr.y1 + ',' + curr.y2;
+        var line = curr[0] + ',' + curr.[1] + ',' + curr[2] + ',' + curr[3] + ',' + curr[4];
         file.writeln(line);
     };
     
