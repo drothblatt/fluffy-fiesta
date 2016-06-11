@@ -12,7 +12,11 @@
 #           get_period_data() - Gets certain data queried for that teacher's period
 #           teacher_exists() - Returns whether a certain teacher exists
 #           get_teachers() - Returns all teachers and periods in a list
-#       See function comments for more details
+#       See function header comments for more details and usage
+#       Some extra methods that won't probably have any use are:
+#           find_student_name() - Finds a student by Name
+#           find_student_osis() - Finds a student by OSIS
+#       See function header comments for more details and usage
 
 import pymongo
 import csv
@@ -35,6 +39,13 @@ TEACHER_FIRSTNAME = "NONE"
 
 connection = MongoClient()
 db = connection['database']
+
+# Sets up a fresh new database
+def setup_database():
+    db.teachers.drop()
+    db.students.drop()
+    add_students()
+    add_teachers()
 
 # returns array of [Teacher Firstname, Teacher Lastname]
 def get_teacher_for_database():
