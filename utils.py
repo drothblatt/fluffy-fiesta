@@ -1,3 +1,13 @@
+# TEACHER DATABASE KEYS
+# NAME - ['FIRSTNAME', 'LASTNAME']
+# CLASSES - Dictionary of all the periods(period numbers are strings)
+#   PERIOD - Dictionary of a bunch of data for that period
+#       STUDENTS - Array of all students in that period. Each student is
+#           ['OSIS', 'FIRSTNAME', 'LASTNAME']
+#       Whatever other keys were added through the add_teacher_period_data() function
+#
+# NOTE: ALL KEYS ARE UPPERCASE STRINGS
+
 import pymongo
 import csv
 from pymongo import MongoClient
@@ -92,13 +102,16 @@ def get_teachers():
     return data
 
 # Checks if a teacher exists in the database given:
-#   teacher - ['lastname', 'firstname']
+#   teacher - ['FIRSTNAME', 'LASTNAME']
 def teacher_exists(teacher):
-    people = db.teachers.find({'name':teacher})
+    people = db.teachers.find({'NAME':teacher})
     for doc in people:
         return True
     return False
 
+# Takes parameter of teacher ['FIRSTNAME', 'LASTNAME']
+# Return dictionary of periods, with all students in that period
+# Each student is ['OSIS', 'FIRSTNAME', 'LASTNAME']
 def get_teacher_classes(teacher):
     l_name = teacher[-1]
     students = db.students.find()
