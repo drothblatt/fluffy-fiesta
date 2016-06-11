@@ -20,13 +20,6 @@ TEACHER_FIRSTNAME = "NONE"
 connection = MongoClient()
 db = connection['database']
 
-# Is called when a new teacher is added to the database.
-#   teacher - Array of ['lastname', 'firstname']
-#   periods - Dictionary of {'period#':[Array_of_Students_OSIS]}
-def add_teacher(teacher, periods):
-    entry = {'name':teacher, 'pds':periods}
-    db.teachers.insert(entry)
-
 # returns array of [Teacher Firstname, Teacher Lastname]
 def get_teacher_for_database():
     auth_teacher_file = open(AUTHORIZED_TEACHERS, "r")
