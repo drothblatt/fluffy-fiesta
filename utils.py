@@ -7,6 +7,12 @@
 #       Whatever other keys were added through the add_teacher_period_data() function
 #
 # NOTE: ALL KEYS ARE UPPERCASE STRINGS
+# NOTE: ANY OTHER FUNCTIONS NEEDED CAN BE MADE USING:
+#           add_teacher_period_data() - Adds or edits data for a certain teacher's period
+#           get_period_data() - Gets certain data queried for that teacher's period
+#           teacher_exists() - Returns whether a certain teacher exists
+#           get_teachers() - Returns all teachers and periods in a list
+#       See function comments for more details
 
 import pymongo
 import csv
