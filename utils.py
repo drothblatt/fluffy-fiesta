@@ -1,10 +1,9 @@
 # TEACHER DATABASE KEYS
 # NAME - ['FIRSTNAME', 'LASTNAME']
 # CLASSES - Dictionary of all the periods(period numbers are strings)
-#   PERIOD - Dictionary of a bunch of data for that period
-#       STUDENTS - Array of all students in that period. Each student is
-#           ['OSIS', 'FIRSTNAME', 'LASTNAME']
-#       Whatever other keys were added through the add_teacher_period_data() function
+# PERIOD - Dictionary of a bunch of data for that period
+# STUDENTS - Array of all students in that period. Each student is ['OSIS', 'FIRSTNAME', 'LASTNAME']
+# Whatever other keys were added through the add_teacher_period_data() function
 #
 # NOTE: ALL KEYS ARE UPPERCASE STRINGS
 # NOTE: ANY OTHER FUNCTIONS NEEDED CAN BE MADE USING:
@@ -171,7 +170,7 @@ def get_students():
 # 'FIRST_NAME' : FIRSTNAME
 # 'OSIS' : osis#
 # 'TEACHERS' : { TEACHERNAME:Period, TEACHERNAME2:Period}
-#           For example: 'TEACHERS' : { 'BROWN' : '3' , 'HOLMES' : '4'}
+# For example: 'TEACHERS' : { 'BROWN' : '3' , 'HOLMES' : '4'}
 def add_students():
     students = get_students()
     #print "Running"
