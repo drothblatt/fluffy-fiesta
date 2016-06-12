@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<h1> Please select which class you would like to view </h1>
+	<body>
+	{% if name %}
+		<p> periods: {{periods[0]}} {{periods[1]}} </p>
+	{% else %}
+		<p> No periods </p>
+	{% endif %}
+	</body>
+</html>

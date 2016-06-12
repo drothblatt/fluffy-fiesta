@@ -10,6 +10,7 @@ import httplib2
 from apiclient.discovery import build
 from urllib2 import Request, urlopen, URLError
 import json
+import utils
 
 app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())
@@ -32,7 +33,7 @@ def valid_user():
 
 # Default page, which is also classes page. Lists all the classes of the teacher
 @app.route("/", methods=["GET","POST"])
-@app.route("/classes", methods=["GET", "POST"])
+#@app.route("/classes", methods=["GET", "POST"])
 def index():
     if not valid_user():
         session.clear()
@@ -46,6 +47,16 @@ def index():
     # Change this to whatever it is for classes, just here as an example
     #return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
     return render_template('makeTemplate.html')
+
+@app.route("/classes/", methods=["GET", "POST"])
+@app.route("/classes/<periods>", methods=["GET", "POST"])
+def classes(pds=None):
+    teachers = get_teachers()
+    periods = []
+    for teach in teachers:
+    	if teach[0][1] == session['last_name']
+    		periods = teach[1]
+    return render_template("classes.html", pds=periods)
 
 # Call back for Google Oauth login. Authenticates and then stores user in session.
 @app.route("/oauth2callback", methods=["GET","POST"])
