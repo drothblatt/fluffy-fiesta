@@ -54,7 +54,7 @@ def classes(pds=None):
     teachers = get_teachers()
     periods = []
     for teach in teachers:
-    	if teach[0][1] == session['last_name']
+    	if teach[0][1] == session['last_name']:
     		periods = teach[1]
     return render_template("classes.html", pds=periods)
 

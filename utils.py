@@ -47,7 +47,7 @@ def setup_database():
     add_teachers()
 
 # returns array of [Teacher Firstname, Teacher Lastname]
-def get_teacher_for_database():
+def get_teachers_for_database():
     auth_teacher_file = open(AUTHORIZED_TEACHERS, "r")
     auth_teacher = auth_teacher_file.read().splitlines()
     auth_teacher_file.close()
