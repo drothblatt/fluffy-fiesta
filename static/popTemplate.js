@@ -96,8 +96,8 @@ function getStudentImgs(){
         //set img var here
         var s = students[i];
         
-        var img = new Image();
-	    img.src = "static/demoimages/" + s.substr(s.indexOf(" ")) + s.substr(0, s.indexOf(",") + ".jpg");
+        var img = document.createElement("IMG");
+        img.setAttribute("src", "../static/demoimages/" + s.substr(s.indexOf(" ")+1) + s.substr(0, s.indexOf(",")) + ".jpg" );
         studentImgs.push(img);
     }
     
@@ -144,11 +144,11 @@ function drawLines(){
     }
     
     if(isMouseDown!=-1){
-        ctx.drawImage(studentImgs[desks[i][4]],
-                      event.clientX - rect.left - (desks[i][2]-desks[i][0])/2,
-                      event.clientY - rect.top - (desks[i][3]-desks[i][1])/2,
-                      desks[i][2]-desks[i][0],
-                      desks[i][3]-desks[i][1]);
+        ctx.drawImage(studentImgs[desks[isMouseDown][4]],
+                      event.clientX - rect.left - (desks[isMouseDown][2]-desks[isMouseDown][0])/2,
+                      event.clientY - rect.top - (desks[isMouseDown][3]-desks[isMouseDown][1])/2,
+                      desks[isMouseDown][2]-desks[isMouseDown][0],
+                      desks[isMouseDown][3]-desks[isMouseDown][1]);
     }
 }
 
@@ -193,5 +193,6 @@ c.addEventListener("mouseup",swap);
 p.addEventListener("click",function(){
     getInfo();
     setDesks();
+    getStudentImgs();
     drawLines();
 });
