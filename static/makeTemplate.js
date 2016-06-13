@@ -151,7 +151,7 @@ function sendInfo(){
     
   var lines_data = "";
   for (var i = 0; i < lines.length; i++) {
-      lines_data += lines[i].x1 + "," + lines[i].x2 + "," + lines[i].y1 + "," + lines[i].y2 + ";";
+      lines_data += lines[i].x1 + ","  lines[i].y1 + "," + lines[i].x2 + "," + lines[i].y2 + ";";
   };
 
   var desks_data = "";
