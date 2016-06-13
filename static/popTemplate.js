@@ -8,9 +8,7 @@ var rect = c.getBoundingClientRect();
 var isMouseDown = -1;
 var studentImgs=[];
 
-var students = ["Filosa, Henry", "Fishelson, Max", "Follosco, Kara",  "Francis, Rahul", "Gary, Annabelle", "Hatzimemos, Aristides", \
-	    	"Kratsios, Andrew", "Kushner, Alexis", "Mansilla, Felipe", "McGreal, Mary", \
-	    	"Rothblatt, David", "Schneider, Max", "Sim, Annie", "Steele, Michael" ]; // will recieve roster alphabetically
+var students = ["Filosa, Henry", "Fishelson, Max", "Follosco, Kara",  "Francis, Rahul", "Gary, Annabelle", "Hatzimemos, Aristides","Kratsios, Andrew", "Kushner, Alexis", "Mansilla, Felipe", "McGreal, Mary","Rothblatt, David", "Schneider, Max", "Sim, Annie", "Steele, Michael" ]; // will recieve roster alphabetically
 // in future, students will be a 2D array with each item having student name, osis, and id (and maybe img)
 
 
@@ -68,7 +66,7 @@ function getInfo(){
 	    };
     }; 
     desks = desksstring;
-    print desks;
+    console.log(desks);
 
    
 }
