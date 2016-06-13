@@ -102,22 +102,20 @@ function drawLines(){
         if(desks[i][4]!=-1 && i!=isMouseDown){
             ctx.drawImage(studentImgs[desks[i][4]],desks[i][0],desks[i][1],desks[i][2]-desks[i][0],desks[i][3]-desks[i][1]);
             ctx.font = "15pt Calibri";
-            var studentName = students[i];
             ctx.fillStyle = "#00ff00";
-            ctx.fillText(studentName,desks[i][0],desks[i][1]+62,desks[i][2]-desks[i][0],desks[i][3]-desks[i][1]);
+            ctx.fillText(students[desks[i][4]],desks[i][0],desks[i][1]+62,desks[i][2]-desks[i][0],desks[i][3]-desks[i][1]);
         }
     }
     
-    if(isMouseDown!=-1){
+    if(isMouseDown!=-1 && isMouseDown < students.length){
         ctx.drawImage(studentImgs[desks[isMouseDown][4]],
                       event.clientX - rect.left - (desks[isMouseDown][2]-desks[isMouseDown][0])/2,
                       event.clientY - rect.top - (desks[isMouseDown][3]-desks[isMouseDown][1])/2,
                       desks[isMouseDown][2]-desks[isMouseDown][0],
                       desks[isMouseDown][3]-desks[isMouseDown][1]);
         ctx.font = "15pt Calibri";
-        var studentName = students[i];
         ctx.fillStyle = "#00ff00";
-        ctx.fillText(studentName,
+        ctx.fillText(students[desks[isMouseDown][4]],
                     event.clientX - rect.left - (desks[isMouseDown][2]-desks[isMouseDown][0])/2 + 10,
                     event.clientY - rect.top - (desks[isMouseDown][3]-desks[isMouseDown][1])/2 + 10,
                     desks[isMouseDown][2]-desks[isMouseDown][0] + 10,
