@@ -13,6 +13,7 @@ SoftDev2 Final Project
  * flask
  * httplib2
  * apiclient
+    * <code>pip install --upgrade google-api-python-client</code>
  * urllib2
  * pymongo
 
