@@ -13,6 +13,8 @@ var students = ["Filosa, Henry", "Fishelson, Max", "Follosco, Kara",  "Francis, 
 	    	"Rothblatt, David", "Schneider, Max", "Sim, Annie", "Steele, Michael" ]; // will recieve roster alphabetically
 // in future, students will be a 2D array with each item having student name, osis, and id (and maybe img)
 
+
+/* DELETE
 function readlinesCSV(){
     var linesFile = "lines.csv";
     var file = new File(linesFile);
@@ -43,6 +45,24 @@ function readDesksCSV(){
     	desks.push( [coors[0], coors[1], coors[2], coors[3], coors[4] ] );
     }
     file.close();
+}
+
+*/
+
+function getInfo(){
+    desksstring = "55,368,202,425,-1;100,504,159,554,-1;284,343,334,424,-1";
+    desksstring = desksstring.split(" /split");
+    for (var i=0; i < desksstring.length; i++){
+	desksstring[i].split(",");
+	for (var j = 0; j < desksstring[i].length; j++){
+	    var strNum = desksstring[i][j];
+	    if (strNum.indexOf(".") != -1){
+		desksstring[i][j] = float(strNum);
+	    } else{
+		desksstring[i][j] = int(strNum);
+	    };
+    }; 
+    desks = desksstring;
 }
 
 

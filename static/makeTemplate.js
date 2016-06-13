@@ -148,6 +148,7 @@ function sendInfo(){
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
   var lines_data = "";
   for (var i = 0; i < lines.length; i++) {
       lines_data += lines[i].x1 + "," + lines[i].x2 + "," + lines[i].y1 + "," + lines[i].y2 + "\n";
@@ -155,15 +156,21 @@ function sendInfo(){
 
   var desks_data = "";
   for (var j = 0; j < desks.length; j++) {
+      desks_data += "";
       for (var x = 0; x < desks[j].length; x++) {
-	  desks_data += desks[j][x];
-	  if (x < 3) {
-	      desks_data += ",";
-	  };
+	       desks_data += desks[j][x];
+	       if (x < 4) {
+               desks_data += ",";
+	       };
       };
-      desks_data += "\n";
+      if (j != desks.length - 1) {
+          desks_data += ";";
+      } else {
+          desks_data += "" ;
+      };
   };
 
   var result = "lines=" + lines_data + "&" + "desks=" + desks_data;
   xhttp.send(result);
+  return desks_data
 }

@@ -33,20 +33,35 @@ def valid_user():
 
 # Default page, which is also classes page. Lists all the classes of the teacher
 @app.route("/", methods=["GET","POST"])
-#@app.route("/classes", methods=["GET", "POST"])
 def index():
     if not valid_user():
         session.clear()
         return redirect(url_for('oauth2callback'))
-    if request.method=="POST":
-        if 'lines' in request.form and 'desks' in request.form:
-            result = ''
-            result += request.form['lines'] + '\n\n' + request.form['desks']
-            print result
-            return result
     # Change this to whatever it is for classes, just here as an example
     #return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
     return render_template('makeTemplate.html')
+
+@app.route("/makeTemplate", methods=["GET","POST"])
+def makeTemplate():
+  if not valid_user():
+        session.clear()
+        return redirect(url_for('oauth2callback'))
+  if request.method=="POST":
+      print "check"
+      redirect(url_for("popTemplate")) 
+  return render_template("makeTemplate.html")
+
+
+@app.route("/popTemplate", methods=["GET","POST"])
+def popTemplate():
+  if not valid_user():
+        session.clear()
+        return redirect(url_for('oauth2callback'))
+  if 'lines' in request.form and 'desks' in request.form:
+      lines = request.form['lines']
+      desks = request.form['desks']
+      print lines + "\n\n" + desks + "\n"
+  return render_template("popTemplate.html", lines=lines, desks=desks)
 
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])
