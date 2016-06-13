@@ -55,16 +55,24 @@ def makeTemplate():
             lines = request.form['lines']
             desks = request.form['desks']
             print lines + "\n\n" + desks + "\n"
-            return redirect(url_for("popTemplate")) 
+            return redirect(url_for("cronut"))
     return render_template("makeTemplate.html")
 
 
 @app.route("/popTemplate", methods=["GET","POST"])
 def popTemplate():
+  print "testing"
+  '''
   if not valid_user():
         session.clear()
         return redirect(url_for('oauth2callback'))
-  return render_template("popTemplate.html", lines=lines, desks=desks)
+  '''
+  return render_template("popTemplate.html")
+
+@app.route("/cronut", methods=["GET", "POST"])
+def cronut():
+    return render_template("cronut.html")
+
 
 
 @app.route("/classes/", methods=["GET", "POST"])
