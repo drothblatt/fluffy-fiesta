@@ -151,7 +151,7 @@ function sendInfo(){
     
   var lines_data = "";
   for (var i = 0; i < lines.length; i++) {
-      lines_data += lines[i].x1 + "," + lines[i].x2 + "," + lines[i].y1 + "," + lines[i].y2 + "\n";
+      lines_data += lines[i].x1 + "," + lines[i].x2 + "," + lines[i].y1 + "," + lines[i].y2 + ";";
   };
 
   var desks_data = "";
@@ -172,5 +172,5 @@ function sendInfo(){
 
   var result = "lines=" + lines_data + "&" + "desks=" + desks_data;
   xhttp.send(result);
-  return desks_data
+  return lines_data + "\n\n\n" + desks_data
 }
