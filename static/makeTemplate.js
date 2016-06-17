@@ -144,11 +144,51 @@ function writeDesksToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much 
 
 }
 
+
+function sendInfo(){
+  var form = document.createElement("FORM");
+  form.method = "post";
+  form.action = "/makeTemplate";
+  var lines_data = "";
+  for (var i = 0; i < lines.length; i++) {
+      lines_data += lines[i].x1 + ","  + lines[i].y1 + "," + lines[i].x2 + "," + lines[i].y2 + ";";
+  };
+
+  var desks_data = "";
+  for (var j = 0; j < desks.length; j++) {
+      desks_data += "";
+      for (var x = 0; x < desks[j].length; x++) {
+	       desks_data += desks[j][x];
+	       if (x < 4) {
+               desks_data += ",";
+	       };
+      };
+      if (j != desks.length - 1) {
+          desks_data += ";";
+      } else {
+          desks_data += "" ;
+      };
+  };
+  var liness = document.createElement("input");
+  liness.type = "text";
+  liness.name = "lines";
+  liness.value = lines_data;
+  form.appendChild(liness);
+  var deskss = document.createElement("input");
+  deskss.type="text";
+  deskss.name="desks";
+  deskss.value=desks_data;
+  form.appendChild(deskss);
+  form.submit();
+  console.log("Submitted");
+}
+
+/*
 function sendInfo(){
   var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "", true);
+  xhttp.open("POST", "/makeTemplate", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    
+
   var lines_data = "";
   for (var i = 0; i < lines.length; i++) {
       lines_data += lines[i].x1 + ","  + lines[i].y1 + "," + lines[i].x2 + "," + lines[i].y2 + ";";
@@ -171,6 +211,7 @@ function sendInfo(){
   };
 
   var result = "lines=" + lines_data + "&" + "desks=" + desks_data;
+  console.log(lines_data + "\n\n\n" + desks_data);
   xhttp.send(result);
   return lines_data + "\n\n\n" + desks_data
-}
+}*/

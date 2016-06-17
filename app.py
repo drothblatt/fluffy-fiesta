@@ -32,7 +32,7 @@ def valid_user():
     return True
 
 
-lines = "" ## simple global variables to help with testing 
+lines = "" ## simple global variables to help with testing
 desks = ""
 
 # Default page, which is also classes page. Lists all the classes of the teacher
@@ -55,7 +55,8 @@ def makeTemplate():
             lines = request.form['lines']
             desks = request.form['desks']
             print lines + "\n\n" + desks + "\n"
-            return redirect(url_for("cronut"))
+            return redirect(url_for("popTemplate"))
+        return redirect(url_for("popTemplate"))
     return render_template("makeTemplate.html")
 
 
@@ -68,12 +69,6 @@ def popTemplate():
         return redirect(url_for('oauth2callback'))
   '''
   return render_template("popTemplate.html")
-
-@app.route("/cronut", methods=["GET", "POST"])
-def cronut():
-    return render_template("cronut.html")
-
-
 
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])
