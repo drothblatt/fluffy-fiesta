@@ -83,15 +83,26 @@ function getInfo(){
 
 
 
-function getStudentImgs(){ 
+function getStudentImgs(){
     for(var i=0; i<students.length; i++){
         //set img var here
         var s = students[i];
 
         var img = document.createElement("IMG");
 	var osis = parseInt(students_adv[i][0]);
-        img.setAttribute("src", "../static/student_images/" + String(students_adv[i][0]) + ".jpg" ); // students[i][0] is 9-digit OSIS
-        studentImgs.push(img);
+        var student_img = students_adv[i][0].replace(/['"]+/g, '');
+        console.log("Something");
+        if(s_imgs.indexOf(parseInt(student_img)) != -1){
+          console.log("True!");
+          var student_img = students_adv[i][0].replace(/['"]+/g, '');
+          console.log("Student Image: " + student_img + "\n");
+          img.setAttribute("src", "../static/student_images/" + student_img + ".jpg" ); // students[i][0] is 9-digit OSIS
+          studentImgs.push(img);
+        }else{
+          console.log("NOT TRUE");
+          img.setAttribute("src", "../static/student_images/0.jpg");
+          studentImgs.push(img);
+        }
     }
 }
 

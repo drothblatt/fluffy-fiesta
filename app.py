@@ -11,6 +11,8 @@ from apiclient.discovery import build
 from urllib2 import Request, urlopen, URLError
 import json
 import utils
+from os import walk
+import json
 
 app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())
@@ -65,6 +67,10 @@ def makeTemplate(period='0'):
 @app.route("/popTemplate/<string:period>", methods=["GET","POST"])
 def popTemplate(period='0'):
   print "period: " + period
+  mypath = "static/student_images"
+  f = []
+  for (dirpath, dirnames, filenames) in walk(mypath):
+      f = filenames
   teacher_last =  session['last_name'].upper()
   teacher_first = session['first_name'].upper()
   students_ = utils.get_teacher_classes([teacher_first, teacher_last])[period]
@@ -73,7 +79,12 @@ def popTemplate(period='0'):
           students_[i][j] = students_[i][j].encode('ascii', 'ignore')
   lines = utils.get_period_data(teacher_last, period, 'LINES')
   desks = utils.get_period_data(teacher_last, period, 'DESKS')
-  return render_template("popTemplate.html", PERIOD=period, lines=lines,desks=desks,students_=students_)
+  z = 0
+  for i in f:
+    f[z] = int(i.split(".")[0])
+    z = z+1
+  print f
+  return render_template("popTemplate.html", PERIOD=period, lines=lines,desks=desks,students_=students_, FILES=f)
 
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])
