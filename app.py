@@ -31,10 +31,6 @@ def valid_user():
         return False
     return True
 
-
-lines = "" ## simple global variables to help with testing
-desks = ""
-
 # Default page, which is also classes page. Lists all the classes of the teacher
 @app.route("/", methods=["GET","POST"])
 def index():
