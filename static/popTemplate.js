@@ -9,22 +9,34 @@ var isMouseDown = -1;
 var studentImgs=[];
 
 var studentsstring =  document.getElementById("STUDENTS").innerHTML;
+console.log( studentsstring);
+
 studentsstring = studentsstring.substr(1, studentsstring.length-2);
+console.log( studentsstring);
+
 while ( studentsstring.indexOf("],") != -1   ) {
     studentsstring = studentsstring.replace("], ", "];");
 }
-console.log("update: " + studentsstring);
+console.log( studentsstring);
 studentsstring = studentsstring.split(";");
 
 for (var i = 0; i < studentsstring.length; i++){
     studentsstring[i] = studentsstring[i].substr(1, studentsstring[i].length-2);
     studentsstring[i] = studentsstring[i].split(",");
 };
+console.log( studentsstring);
+
+var students_adv = studentsstring;
+var students = [];
+for (var j = 0; j < students_adv.length; j++){
+    students.push( students_adv[j][2] + "," + students_adv[j][1]);
+};
 
 
+/*
 var students = ["Filosa, Henry", "Fishelson, Max", "Follosco, Kara",  "Francis, Rahul", "Gary, Annabelle", "Hatzimemos, Aristides","Kratsios, Andrew", "Kushner, Alexis", "Mansilla, Felipe", "McGreal, Mary","Rothblatt, David", "Schneider, Max", "Sim, Annie", "Steele, Michael" ]; // will recieve roster alphabetically
 // in future, students will be a 2D array with each item having student name, osis, and id (and maybe img)
-
+*/
 
 function getInfo(){
     /*
@@ -77,11 +89,10 @@ function getStudentImgs(){
         var s = students[i];
 
         var img = document.createElement("IMG");
-        img.setAttribute("src", "../static/demoimages/" + s.substr(s.indexOf(" ")+1) + s.substr(0, s.indexOf(",")) + ".jpg" );
+	var osis = parseInt(students_adv[i][0]);
+        img.setAttribute("src", "../static/student_images/" + "111111111" + ".jpg" ); // students[i][0] is 9-digit OSIS
         studentImgs.push(img);
     }
-    // the path should really be "../static/student_images/" + students_full[i][0] + ".jpg"
-    // where students[i][0] is 9-digit OSIS
 }
 
 

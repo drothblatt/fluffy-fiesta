@@ -68,6 +68,9 @@ def popTemplate(period='0'):
   teacher_last =  session['last_name'].upper()
   teacher_first = session['first_name'].upper()
   students_ = utils.get_teacher_classes([teacher_first, teacher_last])[period]
+  for i in range(0, len(students_)):
+      for j in range(0, len(students_[i])):
+          students_[i][j] = students_[i][j].encode('ascii', 'ignore')
   lines = utils.get_period_data(teacher_last, period, 'LINES')
   desks = utils.get_period_data(teacher_last, period, 'DESKS')
   return render_template("popTemplate.html", PERIOD=period, lines=lines,desks=desks,students_=students_)
