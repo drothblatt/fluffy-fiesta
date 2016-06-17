@@ -90,7 +90,7 @@ function getStudentImgs(){
 
         var img = document.createElement("IMG");
 	var osis = parseInt(students_adv[i][0]);
-        img.setAttribute("src", "../static/student_images/" + "111111111" + ".jpg" ); // students[i][0] is 9-digit OSIS
+        img.setAttribute("src", "../static/student_images/" + String(students_adv[i][0]) + ".jpg" ); // students[i][0] is 9-digit OSIS
         studentImgs.push(img);
     }
 }
