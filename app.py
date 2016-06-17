@@ -56,7 +56,7 @@ def makeTemplate(period='0'):
             desks = request.form['desks']
             utils.add_teacher_period_data(n, str(period), 'LINES', lines)
             utils.add_teacher_period_data(n, str(period), 'DESKS', desks)
-            print lines + "\n\n" + desks + "\n"
+            print lines + "\n\n" + desks + "\n" + fn + " , " + ln
             return redirect("/popTemplate/%s" % period)
         return redirect(url_for("classes"))
     return render_template("makeTemplate.html", PERIOD=period)
@@ -64,8 +64,13 @@ def makeTemplate(period='0'):
 
 @app.route("/popTemplate/<string:period>", methods=["GET","POST"])
 def popTemplate(period='0'):
-  print period
-  return render_template("popTemplate.html", PERIOD=period)
+  print "period: " + period
+  teacher_last =  session['last_name'].upper()
+  teacher_first = session['first_name'].upper()
+  students = utils.get_teacher_classes([teacher_first, teacher_last])[period]
+  lines = utils.get_period_data(teacher_last, period, 'LINES')
+  desks = utils.get_period_data(teacher_last, period, 'DESKS')
+  return render_template("popTemplate.html", PERIOD=period, lines=lines,desks=desks, students=students)
 
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])

@@ -110,40 +110,6 @@ u.addEventListener("click",function(){
     redrawLines();
 });
 
-function writeLinesToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much thanks
-    var linesFile = "lines.csv";
-
-    var file = new File(linesFile);
-
-    file.open("w"); // open file with write access
-
-    for(var i=0; i<lines.length; i++) {
-        var curr = lines[i];
-        var line = curr.x1 + ',' + curr.x2 + ',' + curr.y1  + ',' + curr.y2;
-        file.writeln(line);
-    };
-
-    file.close();
-
-}
-
-function writeDesksToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much thanks
-    var desksFile = "desk.csv";
-
-    var file = new File(desksFile);
-
-    file.open("w"); // open file with write access
-
-    for(var i=0; i<desks.length; i++) {
-        var curr = desks[i];
-        var line = curr[0] + ',' + curr[1] + ',' + curr[2] + ',' + curr[3] + ',' + curr[4];
-        file.writeln(line);
-    };
-
-    file.close();
-
-}
-
 
 function sendInfo(){
   var form = document.createElement("FORM");
@@ -184,7 +150,7 @@ function sendInfo(){
 }
 
 /*
-function sendInfo(){
+function sendInfoOldVersion(){
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "/makeTemplate", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

@@ -8,9 +8,16 @@
     <h3> Please Select A Class </h3>
 
   <body>
-    <h4> PERIODS:</h4>
+    <h4> Create/Edit Room Templates:</h4>
+    <h5> Periods: </h5> 
     {% for i in periods%}
     <p> <a href="/makeTemplate/{{i}}">Period {{ i }}</a></p>
+    {% endfor %}
+
+    <h4> View/Assign/Alter Seating Chart:</h4>
+    <h5> Periods: </h5>
+    {% for i in periods%}
+    <p> <a href="/popTemplate/{{i}}">Period {{ i }}</a></p>
     {% endfor %}
   </body>
   <footer>
