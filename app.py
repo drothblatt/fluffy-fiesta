@@ -65,22 +65,22 @@ def makeTemplate(period='0'):
 @app.route("/popTemplate/<string:period>", methods=["GET","POST"])
 def popTemplate(period='0'):
   print period
-  '''
-  if not valid_user():
-        session.clear()
-        return redirect(url_for('oauth2callback'))
-  '''
   return render_template("popTemplate.html", PERIOD=period)
 
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])
 def classes(pds=None):
     teachers = get_teachers()
+    teacher = ""
     periods = []
     for teach in teachers:
     	if teach[0][1] == session['last_name']:
-    		periods = teach[1]
-    return render_template("classes.html", pds=periods)
+            periods = teach[1]
+            teacher = session['last_name']
+            print periods
+            break
+    return render_template("classes.html", teacher=teacher, periods=periods)
+
 
 # Call back for Google Oauth login. Authenticates and then stores user in session.
 @app.route("/oauth2callback", methods=["GET","POST"])

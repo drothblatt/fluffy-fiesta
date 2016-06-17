@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
-<h1> Please select which class you would like to view </h1>
-	<body>
-	{% if name %}
-		<p> periods: {{periods[0]}} {{periods[1]}} </p>
-	{% else %}
-		<p> No periods </p>
-	{% endif %}
-	</body>
+  <head>
+    <title> Seating Chart: Classes </title> 
+    <h1> Seating Chart </h1>
+    <h4> Team Fluffy Fiesta </h4>
+    <br><br>
+    {% if teacher != "" %}
+    <h2> {{teacher}}'s Classes </h2>
+    <h3> Please Select A Class </h3>
+  </head>
+
+  </body>
+    {% if teacher and periods %}
+    <p> periods: {{periods[0]}} {{periods[1]}} </p>
+    {% else %}
+    <p> Database cannot find periods for this teacher. </p>
+    {% endif %}
+  </body>
 </html>
