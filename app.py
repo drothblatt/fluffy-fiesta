@@ -43,32 +43,38 @@ def index():
         return redirect(url_for('oauth2callback'))
     # Change this to whatever it is for classes, just here as an example
     #return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
-    return render_template('makeTemplate.html')
+    return redirect("/makeTemplate/%s" % "9")
 
-@app.route("/makeTemplate", methods=["GET","POST"])
-def makeTemplate():
+@app.route("/makeTemplate/<string:period>", methods=["GET","POST"])
+@app.route("/makeTemplate", methods=["GET", "POST"])
+def makeTemplate(period='0'):
     if not valid_user():
         session.clear()
         return redirect(url_for('oauth2callback'))
     if request.method=="POST":
         if 'lines' in request.form and 'desks' in request.form:
+            fn = session['first_name'].upper()
+            ln = session['last_name'].upper()
+            n = [fn, ln]
             lines = request.form['lines']
             desks = request.form['desks']
+            utils.add_teacher_period_data(n, period, 'LINES', lines)
+            utils.add_teacher_period_data(n, period, 'DESKS', desks)
             print lines + "\n\n" + desks + "\n"
-            return redirect(url_for("popTemplate"))
-        return redirect(url_for("popTemplate"))
-    return render_template("makeTemplate.html")
+            return redirect("/popTemplate/%s" % period)
+        return redirect(url_for("classes"))
+    return render_template("makeTemplate.html", PERIOD=period)
 
 
-@app.route("/popTemplate", methods=["GET","POST"])
-def popTemplate():
-  print "testing"
+@app.route("/popTemplate/<string:period>", methods=["GET","POST"])
+def popTemplate(period='0'):
+  print period
   '''
   if not valid_user():
         session.clear()
         return redirect(url_for('oauth2callback'))
   '''
-  return render_template("popTemplate.html")
+  return render_template("popTemplate.html", PERIOD=period)
 
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])

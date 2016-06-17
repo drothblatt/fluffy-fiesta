@@ -148,7 +148,7 @@ function writeDesksToCSV(){ //https://gist.github.com/Arahnoid/9925725 <-- much 
 function sendInfo(){
   var form = document.createElement("FORM");
   form.method = "post";
-  form.action = "/makeTemplate";
+  form.action = "/makeTemplate/" + period;
   var lines_data = "";
   for (var i = 0; i < lines.length; i++) {
       lines_data += lines[i].x1 + ","  + lines[i].y1 + "," + lines[i].x2 + "," + lines[i].y2 + ";";
