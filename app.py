@@ -39,7 +39,7 @@ def index():
         return redirect(url_for('oauth2callback'))
     # Change this to whatever it is for classes, just here as an example
     #return '' + session['first_name'] + ' ' + session['last_name'] + ' ' + session['email']
-    return redirect("/makeTemplate/%s" % "9")
+    return redirect(url_for("classes"))
 
 @app.route("/makeTemplate/<string:period>", methods=["GET","POST"])
 @app.route("/makeTemplate", methods=["GET", "POST"])
@@ -54,8 +54,8 @@ def makeTemplate(period='0'):
             n = [fn, ln]
             lines = request.form['lines']
             desks = request.form['desks']
-            utils.add_teacher_period_data(n, period, 'LINES', lines)
-            utils.add_teacher_period_data(n, period, 'DESKS', desks)
+            utils.add_teacher_period_data(n, str(period), 'LINES', lines)
+            utils.add_teacher_period_data(n, str(period), 'DESKS', desks)
             print lines + "\n\n" + desks + "\n"
             return redirect("/popTemplate/%s" % period)
         return redirect(url_for("classes"))
@@ -70,7 +70,7 @@ def popTemplate(period='0'):
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])
 def classes(pds=None):
-    teachers = get_teachers()
+    teachers = utils.get_teachers()
     teacher = ""
     periods = []
     for teach in teachers:
@@ -118,6 +118,10 @@ def oauth2callback():
         credentials.revoke(httplib2.Http())
         session.clear()
         return "Only stuy.edu emails allowed"
+    if not utils.teacher_exists([session['first_name'], session['last_name']]):
+        credentials.revoke(httplib2.Http())
+        session.clear()
+        return "You are not a teacher!"
     return redirect(url_for('index'))
 
 if __name__ == "__main__":

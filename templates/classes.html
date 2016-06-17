@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Seating Chart: Classes </title> 
+    <title> Seating Chart: Classes </title>
+  </head>
     <h1> Seating Chart </h1>
-    <h4> Team Fluffy Fiesta </h4>
-    <br><br>
-    {% if teacher != "" %}
     <h2> {{teacher}}'s Classes </h2>
     <h3> Please Select A Class </h3>
-  </head>
 
+  <body>
+    <h4> PERIODS:</h4>
+    {% for i in periods%}
+    <p> <a href="/makeTemplate/{{i}}">Period {{ i }}</a></p>
+    {% endfor %}
   </body>
-    {% if teacher and periods %}
-    <p> periods: {{periods[0]}} {{periods[1]}} </p>
-    {% else %}
-    <p> Database cannot find periods for this teacher. </p>
-    {% endif %}
-  </body>
+  <footer>
+    Created by 2016 Spring Softdev Team Fluffy Fiesta
+  </footer>
 </html>
