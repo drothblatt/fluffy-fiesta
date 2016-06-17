@@ -8,29 +8,22 @@ var rect = c.getBoundingClientRect();
 var isMouseDown = -1;
 var studentImgs=[];
 
+var studentsstring =  document.getElementById("STUDENTS").innerHTML;
+studentsstring = studentsstring.substr(1, studentsstring.length-2);
+while ( studentsstring.indexOf("],") != -1   ) {
+    studentsstring = studentsstring.replace("], ", "];");
+}
+console.log("update: " + studentsstring);
+studentsstring = studentsstring.split(";");
 
-/*
-var students = ["Filosa, Henry", "Fishelson, Max", "Follosco, Kara",  "Francis, Rahul", "Gary, Annabelle", "Hatzimemos, Aristides","Kratsios, Andrew", "Kushner, Alexis", "Mansilla, Felipe", "McGreal, Mary","Rothblatt, David", "Schneider, Max", "Sim, Annie", "Steele, Michael" ]; // will recieve roster alphabetically
-// in future, students will be a 2D array with each item having student name, osis, and id (and maybe img)
-*/
-
-var students_full_string = document.getElementById("STUDENTS").innerHTML;
-
-var students_edited_string = students_full_string.slice(1,students_full_string.length-2);
-students_edited_string = students_edited_string.split("]");
-
-//for (var i=0; i < students_full_string.length;i++){
-//    students_edited_string[i].substr(2);
-//};
-
-var students_full = [];
-students_full=students_full_string;
-var students = [];
-for (var i=0; i < students_full.length; i++){
-    students[i] = students_full[i][2] + "," + students_full[i][1];
+for (var i = 0; i < studentsstring.length; i++){
+    studentsstring[i] = studentsstring[i].substr(1, studentsstring[i].length-2);
+    studentsstring[i] = studentsstring[i].split(",");
 };
 
 
+var students = ["Filosa, Henry", "Fishelson, Max", "Follosco, Kara",  "Francis, Rahul", "Gary, Annabelle", "Hatzimemos, Aristides","Kratsios, Andrew", "Kushner, Alexis", "Mansilla, Felipe", "McGreal, Mary","Rothblatt, David", "Schneider, Max", "Sim, Annie", "Steele, Michael" ]; // will recieve roster alphabetically
+// in future, students will be a 2D array with each item having student name, osis, and id (and maybe img)
 
 
 function getInfo(){
@@ -39,6 +32,7 @@ function getInfo(){
 
     var desksstring = "104,117,197,179.83333333333334,-1;104,179.83333333333334,197,242.66666666666669,-1;104,242.66666666666669,197,305.5,-1;104,305.5,197,368.33333333333337,-1;104,368.33333333333337,197,431.1666666666667,-1;104,431.1666666666667,197,494,-1;197,117,290,179.83333333333334,-1;197,179.83333333333334,290,242.66666666666669,-1;197,242.66666666666669,290,305.5,-1;197,305.5,290,368.33333333333337,-1;197,368.33333333333337,290,431.1666666666667,-1;197,431.1666666666667,290,494,-1;396,242,485,304.75,-1;396,304.75,485,367.5,-1;396,367.5,485,430.25,-1;396,430.25,485,493,-1;485,242,574,304.75,-1;485,304.75,574,367.5,-1;485,367.5,574,430.25,-1;485,430.25,574,493,-1;652,120,750,182.5,-1;652,182.5,750,245,-1;652,245,750,307.5,-1;652,307.5,750,370,-1;652,370,750,432.5,-1;652,432.5,750,495,-1;750,120,848,182.5,-1;750,182.5,848,245,-1;750,245,848,307.5,-1;750,307.5,848,370,-1;750,370,848,432.5,-1;750,432.5,848,495,-1";
     */
+
     var linesstring =  document.getElementById("LINES").innerHTML;
     var desksstring =  document.getElementById("DESKS").innerHTML;
 

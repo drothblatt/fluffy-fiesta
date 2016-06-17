@@ -67,10 +67,10 @@ def popTemplate(period='0'):
   print "period: " + period
   teacher_last =  session['last_name'].upper()
   teacher_first = session['first_name'].upper()
-  students = utils.get_teacher_classes([teacher_first, teacher_last])[period]
+  students_ = utils.get_teacher_classes([teacher_first, teacher_last])[period]
   lines = utils.get_period_data(teacher_last, period, 'LINES')
   desks = utils.get_period_data(teacher_last, period, 'DESKS')
-  return render_template("popTemplate.html", PERIOD=period, lines=lines,desks=desks, students=students)
+  return render_template("popTemplate.html", PERIOD=period, lines=lines,desks=desks,students_=students_)
 
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])
