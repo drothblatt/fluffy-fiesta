@@ -70,7 +70,7 @@ def popTemplate(period='0'):
 @app.route("/classes/", methods=["GET", "POST"])
 @app.route("/classes/<periods>", methods=["GET", "POST"])
 def classes(pds=None):
-    teachers = get_teachers()
+    teachers = utils.get_teachers()
     teacher = ""
     periods = []
     for teach in teachers:
