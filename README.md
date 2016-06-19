@@ -24,13 +24,17 @@ SoftDev2 Final Project
 
 ####Google OAuth
 OAuth 2.0 credentials need to be acquired from the Google Developers Console. Then put the client_secrets.json file which can be acquired from Google Developers Console needs to be put in the main directory. Afterwards, change the "CLIENT_SECRET" string in app.py to the filename of the client_secrets file.
- 1. In the Google Developers console, create a new project called seating chart.
- 2. Set the application name and what to display to "Seating Chart"
- 3. Then go to the Oauth page and create credentials.
+ 1. In the Google Developers console(https://consoles.developers.google.com), create a new project called seating chart.
+    * In the "All Projects" Pane, click on create project with any name.
+    * Then, if not already on the APIs page, in the upper right hand corner of the page, click the drop down menu and select the project.
+ 2. Then, click on the "Credentials" pane, and go to the "OAuth Consent Screen" tab. Then set the Product name and whatever other information needed or wanted.
+ 3. Then go to the "Credentials" tab and clicking create credentials, choose "OAuth Client ID".
+    * Choose "Web Application"
+    * Set the name to the application name.
  4. Set the javascript origins to whatever is the address of the host server (i.e. http://seatingchart.stuycs.org)
  5. Set the redirect uri to <server address>/oauth2callback (i.e. http://seatingchart.stuycs.org/oauth2callback)
- 6. After creating the credentials, download the client_secrets json file and put it in the directory with app.py
- 7. In app.py, change the variable CLIENT_SECRET to the name of the client secrets file.
+ 6. Click "Create" and then, after closing the popup with the OAuth client information, click on the client id created and select "Download JSON"
+ 7. Put the JSON file in the directory with the server files (i.e. app.py, etc.) and then in app.py, change the CLIENT_SECRET to the filename of the JSON.
 
 ####MongoDB and Databasing
 An instance of the MongoDB server needs to be running. Connection to the server is found in utils.py. Also, place the student roster csv in the "static/" directory. Edit the CSV headings and filename in "utils.py" to match the student roster.

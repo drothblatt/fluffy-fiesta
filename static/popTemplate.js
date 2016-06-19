@@ -9,27 +9,30 @@ var isMouseDown = -1;
 var studentImgs=[];
 
 var studentsstring =  document.getElementById("STUDENTS").innerHTML;
-console.log( studentsstring);
+//console.log( studentsstring);
 
 studentsstring = studentsstring.substr(1, studentsstring.length-2);
-console.log( studentsstring);
+//console.log( "this is student:" +  studentsstring);
 
 while ( studentsstring.indexOf("],") != -1   ) {
     studentsstring = studentsstring.replace("], ", "];");
 }
-console.log( studentsstring);
+//console.log( studentsstring);
 studentsstring = studentsstring.split(";");
 
 for (var i = 0; i < studentsstring.length; i++){
     studentsstring[i] = studentsstring[i].substr(1, studentsstring[i].length-2);
     studentsstring[i] = studentsstring[i].split(",");
 };
-console.log( studentsstring);
+console.log("This is studentstring: "+ studentsstring);
+console.log(typeof(studentsstring));
 
 var students_adv = studentsstring;
 var students = [];
 for (var j = 0; j < students_adv.length; j++){
-    students.push( students_adv[j][2] + "," + students_adv[j][1]);
+    var first = students_adv[j][2].replace(/['"]+/g, '');
+    var last = students_adv[j][1].replace(/['"]+/g, '');
+    students.push( last + "," + first);
 };
 
 
@@ -108,7 +111,7 @@ function getStudentImgs(){
 
 
 
-function setDesks(){ //(boolean randomize_list){ // assigns each student a desk until no more desks
+function setDesks(){
     /*
 	var students_temp = students;
 	if (randomize_list) {
